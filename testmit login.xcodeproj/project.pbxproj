@@ -15,6 +15,7 @@
 		B02F8D4D2B04CC1A00B6AF54 /* testmit_loginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F8D4C2B04CC1A00B6AF54 /* testmit_loginUITests.swift */; };
 		B02F8D4F2B04CC1A00B6AF54 /* testmit_loginUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F8D4E2B04CC1A00B6AF54 /* testmit_loginUITestsLaunchTests.swift */; };
 		B02F8D5F2B04CF9B00B6AF54 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */; };
+		B089E4252B13AE9A00BFC61F /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B089E4242B13AE9A00BFC61F /* AddAddressView.swift */; };
 		B0BBF2F82B0E079200BB26B2 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2F72B0E079200BB26B2 /* AddressModel.swift */; };
 		B0BBF2FA2B0E0B1900BB26B2 /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2F92B0E0B1900BB26B2 /* AddressListView.swift */; };
 		B0BBF2FC2B0E0B9900BB26B2 /* AddressRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2FB2B0E0B9900BB26B2 /* AddressRowView.swift */; };
@@ -52,6 +53,7 @@
 		B02F8D4E2B04CC1A00B6AF54 /* testmit_loginUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testmit_loginUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		B02F8D602B04D0F800B6AF54 /* testmit-login-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "testmit-login-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B089E4242B13AE9A00BFC61F /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		B0BBF2F72B0E079200BB26B2 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		B0BBF2F92B0E0B1900BB26B2 /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
 		B0BBF2FB2B0E0B9900BB26B2 /* AddressRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressRowView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				B0BBF2F92B0E0B1900BB26B2 /* AddressListView.swift */,
 				B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */,
 				B02F8D332B04CC1800B6AF54 /* ContentView.swift */,
+				B089E4242B13AE9A00BFC61F /* AddAddressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +182,8 @@
 			dependencies = (
 			);
 			name = "testmit login";
+			packageProductDependencies = (
+			);
 			productName = "testmit login";
 			productReference = B02F8D2E2B04CC1800B6AF54 /* testmit login.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +256,10 @@
 				Base,
 			);
 			mainGroup = B02F8D252B04CC1800B6AF54;
+			packageReferences = (
+				B089E4262B13AFC500BFC61F /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				B089E4292B13B04300BFC61F /* XCRemoteSwiftPackageReference "SwiftUI-Refresh" */,
+			);
 			productRefGroup = B02F8D2F2B04CC1800B6AF54 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -295,6 +304,7 @@
 			files = (
 				B0BBF2FC2B0E0B9900BB26B2 /* AddressRowView.swift in Sources */,
 				B0BBF2FA2B0E0B1900BB26B2 /* AddressListView.swift in Sources */,
+				B089E4252B13AE9A00BFC61F /* AddAddressView.swift in Sources */,
 				B0BBF2F82B0E079200BB26B2 /* AddressModel.swift in Sources */,
 				B0BBF3002B0E0CD800BB26B2 /* AddressViewModel.swift in Sources */,
 				B02F8D5F2B04CF9B00B6AF54 /* WebView.swift in Sources */,
@@ -638,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B089E4262B13AFC500BFC61F /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
+		B089E4292B13B04300BFC61F /* XCRemoteSwiftPackageReference "SwiftUI-Refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Refresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = B02F8D262B04CC1800B6AF54 /* Project object */;
 }

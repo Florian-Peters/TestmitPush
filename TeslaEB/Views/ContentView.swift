@@ -1,6 +1,4 @@
 import SwiftUI
-import WebKit
-
 
 struct ContentView: View {
     @StateObject var viewModel = AddressViewModel()
@@ -11,11 +9,16 @@ struct ContentView: View {
                 // WebView
                 WebView(request: URLRequest(url: URL(string: "http://192.168.178.58/jtheseus/servlet/jtheseus.server.JTheseusServlet?User=")!))
 
-                // Address List
+                // Address List NavigationLink
                 NavigationLink(destination: AddressListView(viewModel: viewModel)) {
-                    Text("Show Address List")
+                    Text("Zu den Offline-Daten")
                         .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 6)
                 }
+                .padding(.bottom)
             }
             .onAppear {
                 // Beim Erscheinen der ContentView die Daten aus UserDefaults laden

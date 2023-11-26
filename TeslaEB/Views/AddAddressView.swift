@@ -6,13 +6,34 @@
 //
 
 import SwiftUI
+    
 
 struct AddAddressView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var viewModel: AddressViewModel
+    @State private var newAddressName = ""
+    @State private var newAddressStreet = ""
+    @State private var newcity = ""
+    
 
-#Preview {
-    AddAddressView()
+    var body: some View {
+        VStack {
+            TextField("SearchName", text: $newAddressName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+
+            TextField("Street", text: $newAddressStreet)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+
+            Button("Add Address") {
+                viewModel.addAddress(searchName: newAddressName, street1: newAddressStreet, city: newcity)
+                // Dismiss the current view (AddAddressView)
+                presentationMode.wrappedValue.dismiss()
+            }
+            .padding()
+        }
+        .padding()
+        .navigationBarTitle("Add Address")
+    }
 }

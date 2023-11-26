@@ -14,7 +14,7 @@ struct AddressRowView: View {
         VStack(alignment: .leading) {
             Text("Address ID: \(address.addressID)")
             Text("Search Name: \(address.searchName)")
-            Text("Street1: \(address.Street1)")
+            Text("Street1: \(address.street1)")
         }
     }
 }

@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct Address: Codable {
+struct Address: Codable, Equatable {
     let addressID: Int
     let searchName: String
-    let Street1: String
+    let street1: String
+    let city : String
 
     private enum CodingKeys: String, CodingKey {
         case addressID = "AddressID"
         case searchName = "SearchName"
-        case Street1 = "Street1"
+        case street1 = "Street1"
+        case city = "City"
     }
 }
+
