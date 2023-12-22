@@ -1,4 +1,3 @@
-// AddressListView.swift
 import SwiftUI
 
 struct AddressListView: View {

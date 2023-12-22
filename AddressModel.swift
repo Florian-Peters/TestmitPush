@@ -7,17 +7,19 @@
 
 import Foundation
 
-struct Address: Codable, Equatable {
+struct Address: Codable, Identifiable {
     let addressID: Int
     let searchName: String
     let street1: String
-    let city : String
+    let city: String
+    
+    var id: Int { addressID } // Add this computed property to conform to Identifiable
+
 
     private enum CodingKeys: String, CodingKey {
-        case addressID = "AddressID"
-        case searchName = "SearchName"
-        case street1 = "Street1"
-        case city = "City"
+        case addressID = "addressid"
+        case searchName = "anzeigename"
+        case street1 = "strasse"
+        case city = "ort"
     }
 }
-

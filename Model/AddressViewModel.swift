@@ -4,24 +4,24 @@ class AddressViewModel: ObservableObject {
     @Published var addresses: [Address] = []
 
     func fetchData() {
-        guard let url = URL(string: "http://192.168.178.55:3000/address") else {
+        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=token") else {
             return
         }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let data = data {
-                do {
-                    let decodedData = try JSONDecoder().decode([Address].self, from: data)
-                    DispatchQueue.main.async {
-                        self.addresses = decodedData
-                        // Save data to UserDefaults
-                        self.saveDataToUserDefaults()
-                    }
-                } catch let error {
-                    print("Error decoding JSON: \(error)")
+            guard let data = data, error == nil else {
+                print("Fehler beim Abrufen der Daten: \(error?.localizedDescription ?? "Unbekannter Fehler")")
+                return
+            }
+
+            do {
+                let decodedData = try JSONDecoder().decode([Address].self, from: data)
+                DispatchQueue.main.async {
+                    self.addresses = decodedData
+                    self.saveDataToUserDefaults() // Save to UserDefaults
                 }
+            } catch {
+                print("Fehler beim Decodieren der Daten: \(error.localizedDescription)")
             }
         }.resume()
     }
@@ -39,48 +39,13 @@ class AddressViewModel: ObservableObject {
         }
     }
 
-    func addAddress(searchName: String, street1: String, city: String ) {
-        guard let url = URL(string: "http://192.168.178.55:3000/address") else {
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let newAddress = Address(addressID: 0, searchName: searchName, street1: street1, city: city)
-
-        do {
-            let requestData = try JSONEncoder().encode(newAddress)
-            request.httpBody = requestData
-        } catch {
-            print("Error encoding new address: \(error)")
-            return
-        }
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error adding address: \(error)")
-            } else {
-                self.fetchData()
-            }
-        }.resume()
+    func addAddress(searchName: String, street1: String, city: String) {
+        // Hier können Sie je nach Bedarf die Implementierung für das Hinzufügen von Adressen ergänzen.
+        // Beispiel: Implementierung einer POST-Anfrage an die API, um eine Adresse hinzuzufügen.
     }
 
     func deleteAddress(addressID: Int) {
-        guard let url = URL(string: "http://192.168.178.55:3000/address/\(addressID)") else {
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error deleting address: \(error)")
-            } else {
-                self.fetchData()
-            }
-        }.resume()
+        // Hier können Sie je nach Bedarf die Implementierung für das Löschen von Adressen ergänzen.
+        // Beispiel: Implementierung einer DELETE-Anfrage an die API, um eine Adresse zu löschen.
     }
 }

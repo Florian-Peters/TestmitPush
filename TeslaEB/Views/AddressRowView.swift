@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AddressRowView: View {
     var address: Address
 
