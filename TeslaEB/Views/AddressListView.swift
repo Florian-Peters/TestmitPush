@@ -59,9 +59,6 @@ struct AddressListView: View {
         let lowercasedTerm = term.lowercased()
 
         return address.addressID.description.contains(term) ||
-               address.searchName.lowercased().contains(lowercasedTerm) ||
-               address.street1.lowercased().contains(lowercasedTerm) ||
-               address.city.lowercased().contains(lowercasedTerm)
-        // ... add more properties as needed
+               (address.searchName?.lowercased().contains(lowercasedTerm) ?? false)
     }
 }

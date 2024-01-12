@@ -4,13 +4,14 @@ class AddressViewModel: ObservableObject {
     @Published var addresses: [Address] = []
 
     func fetchData() {
-        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=token") else {
+        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=12FBA45F-06E9-4EBD-B306-3BCEA2D5F85E") else {
+            print("Ungültige URL")
             return
         }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
-                print("Fehler beim Abrufen der Daten: \(error?.localizedDescription ?? "Unbekannter Fehler")")
+                print("Fehler beim Abrufen der Daten:", error?.localizedDescription ?? "Unbekannter Fehler")
                 return
             }
 
@@ -18,24 +19,35 @@ class AddressViewModel: ObservableObject {
                 let decodedData = try JSONDecoder().decode([Address].self, from: data)
                 DispatchQueue.main.async {
                     self.addresses = decodedData
-                    self.saveDataToUserDefaults() // Save to UserDefaults
+                    self.saveDataToUserDefaults()
                 }
             } catch {
-                print("Fehler beim Decodieren der Daten: \(error.localizedDescription)")
+                print("Fehler beim Decodieren der Daten:", error.localizedDescription)
             }
         }.resume()
     }
 
     private func saveDataToUserDefaults() {
-        if let encodedData = try? JSONEncoder().encode(addresses) {
+        do {
+            let encodedData = try JSONEncoder().encode(addresses)
             UserDefaults.standard.set(encodedData, forKey: "addresses")
+        } catch {
+            print("Fehler beim Codieren der Daten:", error.localizedDescription)
         }
     }
 
     func loadDataFromUserDefaults() {
-        if let savedData = UserDefaults.standard.data(forKey: "addresses"),
-           let decodedData = try? JSONDecoder().decode([Address].self, from: savedData) {
-            self.addresses = decodedData
+        if let savedData = UserDefaults.standard.data(forKey: "addresses") {
+            do {
+                let decodedData = try JSONDecoder().decode([Address].self, from: savedData)
+                DispatchQueue.main.async {
+                    self.addresses = decodedData
+                }
+            } catch {
+                print("Fehler beim Decodieren der Daten aus UserDefaults:", error.localizedDescription)
+            }
+        } else {
+            print("Keine Daten in UserDefaults gefunden.")
         }
     }
 

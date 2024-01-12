@@ -10,10 +10,10 @@ struct AddressDetailsView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
-            Section(header: Text("Details").font(.headline)) {
+            Group {
                 Text("Address ID: \(address.addressID)")
-                Text("Search Name: \(address.searchName)")
-                Text("Street1: \(address.street1)")
+                Text("Search Name: \(address.searchName ?? "")")
+                Text("Street1: \(address.street1 ?? "")")
             }
             .padding()
 
@@ -24,7 +24,7 @@ struct AddressDetailsView: View {
             }) {
                 Image(systemName: "trash")
                     .resizable()
-                    .frame(width: 35, height: 35) // Hier die Größe anpassen
+                    .frame(width: 35, height: 35)
                     .foregroundColor(.red)
             }
             .alert(isPresented: $showingDeleteAlert) {
