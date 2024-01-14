@@ -5,7 +5,7 @@ struct AddAddressView: View {
     @ObservedObject var viewModel: AddressViewModel
     @State private var newAddressName = ""
     @State private var newAddressStreet = ""
-    @State private var newCity = "" // Corrected variable name
+    @State private var newcity = ""
 
     var body: some View {
         VStack {
@@ -14,10 +14,6 @@ struct AddAddressView: View {
                 .padding()
 
             TextField("Street", text: $newAddressStreet)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("City", text: $newCity) // Added city text field
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
@@ -31,7 +27,7 @@ struct AddAddressView: View {
     }
 
     func addAddress() {
-        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=14623655-7E8C-43C3-8D99-BA637C2BBF2D&searchname=\(newAddressName)&housenumber=\(newAddressStreet)&street1=Muster&zip1=41068&city=\(newCity)") else {
+        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=token&searchname=\(newAddressName)&housenumber=\(newAddressStreet)&street1=Muster&zip1=41068&city=DD") else {
             print("Invalid URL")
             return
         }
@@ -48,7 +44,7 @@ struct AddAddressView: View {
 
                     // You can update your view model or handle the result as needed
                     DispatchQueue.main.async {
-                        viewModel.addAddress(searchName: newAddressName, street1: newAddressStreet, city: newCity)
+                        viewModel.addAddress(searchName: newAddressName, street1: newAddressStreet, city: newcity)
                         // Dismiss the current view (AddAddressView)
                         presentationMode.wrappedValue.dismiss()
                     }

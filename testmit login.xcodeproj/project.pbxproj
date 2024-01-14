@@ -16,6 +16,7 @@
 		B02F8D4F2B04CC1A00B6AF54 /* testmit_loginUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F8D4E2B04CC1A00B6AF54 /* testmit_loginUITestsLaunchTests.swift */; };
 		B02F8D5F2B04CF9B00B6AF54 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */; };
 		B089E4252B13AE9A00BFC61F /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B089E4242B13AE9A00BFC61F /* AddAddressView.swift */; };
+		B091EC6E2B53D537004ACF0A /* UpdateAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091EC6D2B53D537004ACF0A /* UpdateAddressView.swift */; };
 		B0BBF2F82B0E079200BB26B2 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2F72B0E079200BB26B2 /* AddressModel.swift */; };
 		B0BBF2FA2B0E0B1900BB26B2 /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2F92B0E0B1900BB26B2 /* AddressListView.swift */; };
 		B0BBF2FC2B0E0B9900BB26B2 /* AddressRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBF2FB2B0E0B9900BB26B2 /* AddressRowView.swift */; };
@@ -54,6 +55,7 @@
 		B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		B02F8D602B04D0F800B6AF54 /* testmit-login-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "testmit-login-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B089E4242B13AE9A00BFC61F /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
+		B091EC6D2B53D537004ACF0A /* UpdateAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAddressView.swift; sourceTree = "<group>"; };
 		B0BBF2F72B0E079200BB26B2 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		B0BBF2F92B0E0B1900BB26B2 /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
 		B0BBF2FB2B0E0B9900BB26B2 /* AddressRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressRowView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				B02F8D5E2B04CF9B00B6AF54 /* WebView.swift */,
 				B02F8D332B04CC1800B6AF54 /* ContentView.swift */,
 				B089E4242B13AE9A00BFC61F /* AddAddressView.swift */,
+				B091EC6D2B53D537004ACF0A /* UpdateAddressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				B02F8D5F2B04CF9B00B6AF54 /* WebView.swift in Sources */,
 				B0BBF2FE2B0E0C2000BB26B2 /* AddressDetailsView.swift in Sources */,
 				B02F8D342B04CC1800B6AF54 /* ContentView.swift in Sources */,
+				B091EC6E2B53D537004ACF0A /* UpdateAddressView.swift in Sources */,
 				B02F8D322B04CC1800B6AF54 /* TESLA.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

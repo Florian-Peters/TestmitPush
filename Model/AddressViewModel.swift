@@ -52,12 +52,66 @@ class AddressViewModel: ObservableObject {
     }
 
     func addAddress(searchName: String, street1: String, city: String) {
-        // Hier können Sie je nach Bedarf die Implementierung für das Hinzufügen von Adressen ergänzen.
-        // Beispiel: Implementierung einer POST-Anfrage an die API, um eine Adresse hinzuzufügen.
+        guard let url = URL(string: "http://192.168.178.58/jtheseus/service?token=14623655-7E8C-43C3-8D99-BA637C2BBF2D&searchname=\(searchName)&housenumber=\(street1)&street1=Muster&zip1=41068&city=\(city)") else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+            } else if let data = data {
+                if let resultString = String(data: data, encoding: .utf8) {
+                    print("Result: \(resultString)")
+
+                    DispatchQueue.main.async {
+                        self.fetchData() // Reload data after adding a new address
+                    }
+                } else {
+                    print("Unable to convert data to string")
+                }
+            }
+        }.resume()
     }
 
     func deleteAddress(addressID: Int) {
-        // Hier können Sie je nach Bedarf die Implementierung für das Löschen von Adressen ergänzen.
-        // Beispiel: Implementierung einer DELETE-Anfrage an die API, um eine Adresse zu löschen.
+        // Implement the logic to delete an address by making a DELETE request to the API.
+        // Update the local addresses array and reload data as needed.
+        // Example: send a DELETE request to http://your-api-url/addresses/{addressID}
+    }
+
+    func updateAddress(searchName: String, street1: String, city: String) {
+        // Implement the logic to update an existing address by making a PUT request to the API.
+        // Include the necessary parameters (e.g., searchName, street1, city) in the request.
+        // Example: send a PUT request to http://your-api-url/addresses/{addressID}
+
+        // Note: Replace "yourUpdateURL" with the actual URL for updating addresses.
+        guard let url = URL(string: "yourUpdateURL") else {
+            print("Invalid URL for updating address")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        // Include necessary request parameters for updating an address
+        // (e.g., searchName, street1, city).
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+            } else if let data = data {
+                // Handle the response data as needed.
+                // You may update the local addresses array or perform other actions.
+                print("Update Result: \(String(data: data, encoding: .utf8) ?? "")")
+
+                DispatchQueue.main.async {
+                    self.fetchData() // Reload data after updating an address
+                }
+            }
+        }.resume()
     }
 }
