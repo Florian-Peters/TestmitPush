@@ -5,34 +5,28 @@ struct AddressListView: View {
     @State private var isAddAddressViewPresented = false
     @State private var searchTerm = ""
 
-    var filteredAddresses: [Address] {
-        if searchTerm.isEmpty {
-            return viewModel.addresses
-        } else {
-            return viewModel.addresses.filter { containsSearchTerm(address: $0, term: searchTerm) }
-        }
-    }
-
     var body: some View {
         NavigationView {
-            VStack {
-                // Search Bar
-                TextField("Search", text: $searchTerm)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+            ZStack {  // Use ZStack to layer views
+                // Background
+                Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all)  // Light gray background
 
-                // List of Addresses
-                List(filteredAddresses, id: \.addressID) { address in
-                    NavigationLink(destination: AddressDetailsView(address: address, viewModel: viewModel)) {
-                        AddressRowView(address: address)
+                VStack {
+                  
+
+                    // Search Bar
+                    TextField("Search", text: $searchTerm)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+
+                    // List of Addresses
+                    List(filteredAddresses, id: \.addressID) { address in
+                        NavigationLink(destination: AddressDetailsView(address: address, viewModel: viewModel)) {
+                            AddressRowView(address: address)
+                        }
                     }
-                }
-                .padding()
 
-                // Add Address Button
-                HStack {
-                    Spacer()
-
+                    // Add Address Button
                     Button(action: {
                         isAddAddressViewPresented.toggle()
                     }) {
@@ -46,19 +40,34 @@ struct AddressListView: View {
                         AddAddressView(viewModel: viewModel)
                     }
                 }
+                .navigationBarTitle("Address List", displayMode: .inline)
+                .onAppear {
+                    viewModel.fetchData()
+                }
             }
-            .navigationBarTitle("Address List")
-            .onAppear {
-                // Load initial data when the view appears
-                viewModel.fetchData()
-            }
+        }
+    }
+
+    var filteredAddresses: [Address] {
+        if searchTerm.isEmpty {
+            return viewModel.addresses
+        } else {
+            return viewModel.addresses.filter { containsSearchTerm(address: $0, term: searchTerm) }
         }
     }
 
     func containsSearchTerm(address: Address, term: String) -> Bool {
         let lowercasedTerm = term.lowercased()
-
         return address.addressID.description.contains(term) ||
-               (address.searchName?.lowercased().contains(lowercasedTerm) ?? false)
+            (address.searchName?.lowercased().contains(lowercasedTerm) ?? false)
+    }
+
+    var logoImage: some View {
+        Image("TLC-Logo-mit-Text")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 150, height: 150)  // Increase the size of the logo
+            .padding()
     }
 }
+
